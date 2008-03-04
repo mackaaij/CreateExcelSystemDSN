@@ -4,12 +4,12 @@ REM (or looks for .xls files in the current folder)
 REM Opens Windows ODBC management afterwards
 REM Note: Overwrites existing DSN's
 REM
-REM Patrick Mackaaij, 08-03-2008
+REM Patrick Mackaaij, 02-09-2008
 REM
 REM Parameters not passed to the DSN at the moment:
 REM - Default directory without trailing slash (DefaultDir)
 REM - Excel version (FIL)
-title Create Excel System DSN v1.4
+title Create Excel System DSN v1.5
 
 REM Setting to check whether a DSN was created.
 REM Windows ODBC management is only opened if a DSN was created.
@@ -21,8 +21,9 @@ if [%1]==[] goto :SearchXLS
 
 REM Otherwise parse the variables passed (filenames)
 :ParseVariables
-REM Check wether the dropped file is an Excel file (based on the extension ".xls")
-if NOT [%~x1]==[.xls] echo WARNING ONLY: No DSN is created for the following filename: & echo %1 & echo This filename does not have the extension ".xls". & echo This file is not expected to be an Excel file. & color 4f & pause & goto :shift
+REM Check wether the dropped file is an Excel file
+REM (check is based on the extension ".xls" or ".XLS" with case insensitive parameter /I)
+if /I NOT [%~x1]==[.xls] echo WARNING ONLY: No DSN is created for the following filename: & echo %1 & echo This filename does not have the extension ".xls". & echo This file is not expected to be an Excel file. & color 4f & pause & goto :shift
 REM If the extension is .XLS...
 REM Set the passed filename (which includes a full path) to only the filename in currentFilename
 REM (The filename is used as the DSN name)
