@@ -4,12 +4,12 @@ REM (or looks for .xls files in the current folder)
 REM Opens Windows ODBC management afterwards
 REM Note: Overwrites existing DSN's
 REM
-REM Patrick Mackaaij, 04-03-2008
+REM Patrick Mackaaij, 08-03-2008
 REM
 REM Parameters not passed to the DSN at the moment:
 REM - Default directory without trailing slash (DefaultDir)
 REM - Excel version (FIL)
-title Create Excel System DSN v1.3
+title Create Excel System DSN v1.4
 
 REM Setting to check whether a DSN was created.
 REM Windows ODBC management is only opened if a DSN was created.
@@ -45,10 +45,10 @@ REM =========================================== START Main createDSN code (calle
 :createDSN
 REM Code to dequote the passed filename, otherwise odbcconf will interpreted the DBQ until the first space
 REM Source: http://www.ss64.com/ntsyntax/esc.html
-SET Fullname=###%currentFullname%###
-SET Fullname=%currentFullname:"###=%
-SET Fullname=%currentFullname:###"=%
-SET Fullname=%currentFullname:###=%
+SET currentFullname=###%currentFullname%###
+SET currentFullname=%currentFullname:"###=%
+SET currentFullname=%currentFullname:###"=%
+SET currentFullname=%currentFullname:###=%
 
 REM Configure System DSN using command line tool odbcconf
 REM The filename is used as the DSN name
